@@ -1,0 +1,10 @@
+¿Es este animal un mamífero?
+¿Es este animal un carnívoro?
+¿Puede este animal volar?
+¿Vive este animal en el agua?
+¿Este animal es un reptil?
+¿Este animal es un insecto?
+¿Este animal tiene un caparazón?
+¿Es este animal nocturno?
+¿Este animal tiene escamas?
+¿Este animal tiene cuernos?
