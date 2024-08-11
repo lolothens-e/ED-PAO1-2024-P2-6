@@ -15,20 +15,36 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Scanner;
 /**
  *
  * @author Steven
  */
 public class Juego {
     public static ArbolBinario<String> arbolJuego = new ArbolBinario<>();
+    public static ArrayList<String> respuestasUsuario=new ArrayList<>();
+    public static int nPreguntasUsuario=0;
+    
     public static int nPreguntas=leerPreguntas().size();
     public static HashMap<ArbolBinario,List<String>> caminos = cargarArbol();
-
+    public static HashMap<List<String>,String> animales = new HashMap<>();
+    
+    static ArrayList<String> preguntas=leerPreguntas();
+    static HashMap<String,ArrayList<String>> respuestas=leerRespuestas();
+    
+    
+    public static void cargarAnimales(){
+        for(Map.Entry<ArbolBinario,List<String>> m: caminos.entrySet()){
+            if(!m.getKey().raiz.contenido.equals("Animal no definido")||!(((String)m.getKey().raiz.contenido).startsWith("¿"))){
+                animales.put(m.getValue(),(String)m.getKey().raiz.contenido );
+            }
+        }
+    }
     
     //Carga arbolJuego con las preguntas y respuestas    
     public static HashMap<ArbolBinario,List<String>> cargarArbol(){
-    ArrayList<String> lista=leerPreguntas();
-    HashMap<String,ArrayList<String>> respuestas=leerRespuestas();
+    ArrayList<String> lista=preguntas;
+    HashMap<String,ArrayList<String>> resp=respuestas;
             
     Queue<ArbolBinario> ramas = new LinkedList<>();
     ArbolBinario arbol=new ArbolBinario<>(lista.get(0));
@@ -56,13 +72,13 @@ public class Juego {
             
             ArrayList<String> posibles=new ArrayList<>();
             
-            for(Map.Entry<String,ArrayList<String>> m:respuestas.entrySet()){
+            for(Map.Entry<String,ArrayList<String>> m:resp.entrySet()){
                 if(m.getValue().subList(0, nPreguntas-1).equals(local.get(uso))) posibles.add(m.getKey());//Cambiar a numero de preguntas
             }
             for(String s: posibles){
                 List<String> aux=new ArrayList(local.get(uso));
                 aux.add("si");
-                if(aux.equals(respuestas.get(s))) izquierda=new ArbolBinario(s);
+                if(aux.equals(resp.get(s))) izquierda=new ArbolBinario(s);
                 else derecha=new ArbolBinario(s);
             } 
         }
@@ -84,18 +100,54 @@ public class Juego {
     
     
     public static void main(String []args){
-        //for(String s:leerPreguntas()) System.out.println(s);
-        //for(Map.Entry m:leerRespuestas().entrySet()) System.out.println(m);
-        for(Map.Entry m:caminos.entrySet()) System.out.println(((ArbolBinario)m.getKey()).raiz.contenido+" "+ m.getValue());
+        Scanner sc= new Scanner(System.in);
+        System.out.print("Ingrese numero de preguntas a jugar:");
+        nPreguntasUsuario=sc.nextInt();
+        if(nPreguntasUsuario-nPreguntas<0)System.out.println("ADVERTENCIA: Ha seleccionado un numero de preguntas menor a la del archivo. No llegara a un animal especifico");
+        if(nPreguntasUsuario-nPreguntas>0)System.out.println("ADVERTENCIA: Ha seleccionado un numero de preguntas mayor a la del archivo. El juego no continuara tras llegar a un animal");
+        for(int i = 0; i<nPreguntasUsuario; i++){
+            System.out.println(preguntas.indexOf(i)+("Y/N"));
+            
+            String respuesta=sc.next();
+            
+            while(!"Y".equals(respuesta)||!"N".equals(respuesta)){
+                System.out.println("Opcion invalida. Ingrese nuevamente");
+                
+            }
+            if(respuesta.equals("Y"))respuestasUsuario.add("si");
+            if(respuesta.equals("N")) respuestasUsuario.add("no");
+            
+            if(respuestasUsuario.size()==nPreguntas) i=nPreguntasUsuario;
+        }
+        ArbolBinario respuesta = regresarArbolRespuesta(respuestasUsuario);
         
+        if(respuesta.esHoja()) System.out.println("Tu animal es:"+ (String)respuesta.raiz.contenido);
+        else System.out.println("No llegamos a una respuesta concluyente, sin embargo, tus animales pudieron haber sido:"+ regresarAnimalesDescendientes(respuesta));
     }
     
+    public static ArrayList<String> regresarAnimalesDescendientes(ArbolBinario ab){
+        ArrayList<String> regreso=new ArrayList<>();
+        for(var e:ab.getDescendientes()){
+            boolean esAnimal= !((String)e).startsWith("¿")||!((String)e).equals("Animal no definido");
+            if(esAnimal) regreso.add((String)e);
+        }
+        return regreso;
+    }
+    
+    public static ArbolBinario regresarArbolRespuesta(ArrayList<String> respuestas){
+        String pAnimal=animales.getOrDefault(respuestas,"N/A");
+
+        for(Map.Entry m:caminos.entrySet()) if(m.getValue().equals(pAnimal))return (ArbolBinario) m.getKey();
+        for(Map.Entry m:caminos.entrySet()) if(m.getValue().equals(respuestas)) return (ArbolBinario) m.getKey();
+        
+        return null;
+    }
     //Retorna una lista con las preguntas
     public static ArrayList<String> leerPreguntas(){
         ArrayList<String> lista= new ArrayList<>();
         
         try(BufferedReader leer= new BufferedReader(new FileReader("src/main/resources"
-        + "/archivos/Preguntas.txt"))){
+        + "/archivos/Preguntas2.txt"))){
             String linea= "";
             while((linea=leer.readLine())!=null){
                 lista.add(linea);
@@ -112,7 +164,7 @@ public class Juego {
         HashMap<String,ArrayList<String>> mapa= new HashMap<>();
         
         try(BufferedReader leer= new BufferedReader(new FileReader("src/main/resources"
-        + "/archivos/Respuestas.txt"))){
+        + "/archivos/Respuestas2.txt"))){
             String linea="";
             while((linea=leer.readLine())!=null){
                 ArrayList<String> lista= new ArrayList<>();
