@@ -9,12 +9,12 @@ import java.util.ArrayList;
  * @author Anthony
  */
 public class ArbolBinario<E> {
-    Nodo raiz;
+    public Nodo raiz;
     
     public class Nodo{
-        E contenido;
-        ArbolBinario<E> izq;
-        ArbolBinario<E> der;
+        public E contenido;
+        public ArbolBinario<E> izq;
+        public ArbolBinario<E> der;
         public Nodo(E e){
             contenido = e;
             izq = der = null;
@@ -72,8 +72,12 @@ public class ArbolBinario<E> {
         ArrayList<E> recorrido = new ArrayList<E>();
         recorrido.add(raiz.contenido);
 
-        if(raiz.izq!=null) recorrido.addAll(raiz.izq.recorridoPreOrden());
-        if(raiz.der!=null) recorrido.addAll(raiz.der.recorridoPreOrden());
+        if(raiz.izq!=null){
+        recorrido.addAll(raiz.izq.recorridoPreOrden());
+        } 
+        if(raiz.der!=null){
+        recorrido.addAll(raiz.der.recorridoPreOrden());
+        }
         return recorrido;
     }
     
@@ -110,5 +114,5 @@ public class ArbolBinario<E> {
         total.addAll(totalDer);
         return total;
     }
- 
+     
 }
