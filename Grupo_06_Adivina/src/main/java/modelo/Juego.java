@@ -10,47 +10,38 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-
-
 /**
  *
  * @author Steven
  */
 public class Juego {
-    public static ArbolBinario<String> arbolJuego= new ArbolBinario<>();
-    public static int nPreguntas;
+    public static ArbolBinario<String> arbolJuego = new ArbolBinario<>();
+    public static int nPreguntas=leerPreguntas().size();
+    public static HashMap<ArbolBinario,List<String>> caminos = cargarArbol();
+
     
-    //Carga arbolJuego con las preguntas y respuestas
-    public static void cargarArbol(){
-        cargarPreguntas(leerPreguntas());
-        HashMap<String,ArrayList<String>> respuestas=leerRespuestas();
-        
-        //for(String s:arbolJuego.recorridoPreOrden()) System.out.println(s);
-    }
-    
-    public static void cargarPreguntas(ArrayList<String> lista) {
-    if (lista == null || lista.isEmpty()) {
-        return;
-    }
+    //Carga arbolJuego con las preguntas y respuestas    
+    public static HashMap<ArbolBinario,List<String>> cargarArbol(){
+    ArrayList<String> lista=leerPreguntas();
+    HashMap<String,ArrayList<String>> respuestas=leerRespuestas();
+            
     Queue<ArbolBinario> ramas = new LinkedList<>();
     ArbolBinario arbol=new ArbolBinario<>(lista.get(0));
-    HashMap<ArbolBinario,List<String>> caminos = new HashMap<>();
+    HashMap<ArbolBinario,List<String>> local = new HashMap<>();
     
-    caminos.put(arbol,new ArrayList<>());
+    local.put(arbol,new ArrayList<>());
     
     ramas.offer(arbol);
     
     while(!ramas.isEmpty()){        
         ArbolBinario uso=ramas.poll();
         
-        ArbolBinario izquierda;
-        ArbolBinario derecha;
+        ArbolBinario izquierda,derecha;
                 
         try{    
             izquierda=new ArbolBinario(lista.get(lista.indexOf(uso.raiz.contenido)+1));
@@ -59,28 +50,44 @@ public class Juego {
             ramas.offer(izquierda);
             ramas.offer(derecha);
         }catch(IndexOutOfBoundsException e){
-            izquierda=new ArbolBinario("Animal");
-            derecha=new ArbolBinario("Animal");
+            
+            izquierda=new ArbolBinario("Animal no definido");
+            derecha=new ArbolBinario("Animal no definido");
+            
+            ArrayList<String> posibles=new ArrayList<>();
+            
+            for(Map.Entry<String,ArrayList<String>> m:respuestas.entrySet()){
+                if(m.getValue().subList(0, nPreguntas-1).equals(local.get(uso))) posibles.add(m.getKey());//Cambiar a numero de preguntas
+            }
+            for(String s: posibles){
+                List<String> aux=new ArrayList(local.get(uso));
+                aux.add("si");
+                if(aux.equals(respuestas.get(s))) izquierda=new ArbolBinario(s);
+                else derecha=new ArbolBinario(s);
+            } 
         }
        
-        caminos.put(derecha,new ArrayList<>(caminos.get(uso)));
-        caminos.get(derecha).add("No");
+        local.put(derecha,new ArrayList<>(local.get(uso)));
+        local.get(derecha).add("no");
         
-        caminos.put(izquierda,new ArrayList<>(caminos.get(uso)));
-        caminos.get(izquierda).add("Si");
+        local.put(izquierda,new ArrayList<>(local.get(uso)));
+        local.get(izquierda).add("si");
 
         uso.addLeft(izquierda);
         uso.addRight(derecha);
     }
-    //for(Map.Entry m:caminos.entrySet()) System.out.println(((ArbolBinario)m.getKey()).raiz.contenido+" "+m.getValue());
+    
     arbolJuego=arbol;
+    
+    return local;
     }
     
     
     public static void main(String []args){
-        for(String s:leerPreguntas()) System.out.println(s);
-        for(Map.Entry m:leerRespuestas().entrySet()) System.out.println(m);
-        cargarArbol();
+        //for(String s:leerPreguntas()) System.out.println(s);
+        //for(Map.Entry m:leerRespuestas().entrySet()) System.out.println(m);
+        for(Map.Entry m:caminos.entrySet()) System.out.println(((ArbolBinario)m.getKey()).raiz.contenido+" "+ m.getValue());
+        
     }
     
     //Retorna una lista con las preguntas
@@ -88,7 +95,7 @@ public class Juego {
         ArrayList<String> lista= new ArrayList<>();
         
         try(BufferedReader leer= new BufferedReader(new FileReader("src/main/resources"
-        + "/archivos/Preguntas2.txt"))){
+        + "/archivos/Preguntas.txt"))){
             String linea= "";
             while((linea=leer.readLine())!=null){
                 lista.add(linea);
@@ -105,7 +112,7 @@ public class Juego {
         HashMap<String,ArrayList<String>> mapa= new HashMap<>();
         
         try(BufferedReader leer= new BufferedReader(new FileReader("src/main/resources"
-        + "/archivos/Respuestas2.txt"))){
+        + "/archivos/Respuestas.txt"))){
             String linea="";
             while((linea=leer.readLine())!=null){
                 ArrayList<String> lista= new ArrayList<>();
