@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_06_adivina.MenuController">
+   <children>
+      <BorderPane prefHeight="584.0" prefWidth="800.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="225.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Nombre del Juego">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="333.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnClasico" mnemonicParsing="false" onAction="#modoClasico" prefHeight="90.0" prefWidth="270.0" text="Modo Clasico">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnTrivia" mnemonicParsing="false" onAction="#modoTrivia" prefHeight="90.0" prefWidth="270.0" text="Modo Trivia">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </center>
+         <left>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+      <HBox prefHeight="19.0" prefWidth="800.0">
+         <children>
+            <Label text="Copyright©2024 Grupo#6">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+         </children>
+      </HBox>
+   </children>
+</VBox>
