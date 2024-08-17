@@ -6,7 +6,9 @@ package modelo;
 
 import EstructuraDatos.ArbolBinario;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,14 +26,20 @@ public class Juego {
     
     static Scanner sc = new Scanner(System.in);
     
-    static ArrayList<String> preguntas=leerPreguntas();
-    static HashMap<String,ArrayList<String>> respuestas=leerRespuestas();
+    public static ArrayList<String> preguntas=leerPreguntas("src/main/resources"
+        + "/archivos/Preguntas.txt");
+    public static HashMap<String,ArrayList<String>> respuestas=leerRespuestas("src/main/resources"
+        + "/archivos/Respuestas.txt");
+    
+//    public final static String rutaFijaP="src/main/resources/archivos/preguntasGuardadas.txt";
+//    public final static String rutaFijaR="src/main/resources/archivos/respuestasGuardadas.txt";
     
     public static ArbolBinario<String> arbolJuego = new ArbolBinario<>();
     public static ArrayList<String> respuestasUsuario=new ArrayList<>();
     public static int nPreguntasUsuario=0;
     
-    public static int nPreguntas=leerPreguntas().size();
+    public static int nPreguntas=leerPreguntas("src/main/resources"
+        + "/archivos/Preguntas.txt").size();
     public static HashMap<ArbolBinario,List<String>> caminos = cargarArbol();
     public static HashMap<List<String>,String> animales = cargarAnimales();
     
@@ -202,14 +210,13 @@ public class Juego {
     }
     
     //Retorna una lista con las preguntas
-    public static ArrayList<String> leerPreguntas(){
+    public static ArrayList<String> leerPreguntas(String ruta){
         ArrayList<String> lista= new ArrayList<>();
         
-        try(BufferedReader leer= new BufferedReader(new FileReader("src/main/resources"
-        + "/archivos/Preguntas.txt"))){
+        try(BufferedReader leer= new BufferedReader(new FileReader(ruta))){
             String linea= "";
             while((linea=leer.readLine())!=null){
-                lista.add(linea);
+                if(!linea.isEmpty()) lista.add(linea); //Evitando lineas no nulas, pero con cadena vacia
             }
         }catch(IOException e){
             System.out.println(e.getMessage());
@@ -219,21 +226,22 @@ public class Juego {
     }
     
     //Retorna una mapa donde la llave es el animal y el valor es una lista con los Si y No
-    public static HashMap<String,ArrayList<String>> leerRespuestas(){
+    public static HashMap<String,ArrayList<String>> leerRespuestas(String ruta){
         HashMap<String,ArrayList<String>> mapa= new HashMap<>();
         
-        try(BufferedReader leer= new BufferedReader(new FileReader("src/main/resources"
-        + "/archivos/Respuestas.txt"))){
+        try(BufferedReader leer= new BufferedReader(new FileReader(ruta))){
             String linea="";
             while((linea=leer.readLine())!=null){
-                ArrayList<String> lista= new ArrayList<>();
-                String[] partes= linea.split(" ");
-                String nombre= partes[0];
-                String[] siNo = Arrays.copyOfRange(partes, 1, partes.length);
-                ArrayList<String> siNoLista = new ArrayList<>(Arrays.asList(siNo));
+                if(!linea.isEmpty()){ //Evitando lineas no nulas, pero con cadena vacia
+                    ArrayList<String> lista= new ArrayList<>();
+                    String[] partes= linea.split(" ");
+                    String nombre= partes[0];
+                    String[] siNo = Arrays.copyOfRange(partes, 1, partes.length);
+                    ArrayList<String> siNoLista = new ArrayList<>(Arrays.asList(siNo));
                 
-                lista.addAll(siNoLista);
-                mapa.put(nombre,lista);
+                    lista.addAll(siNoLista);
+                    mapa.put(nombre,lista);
+                }
             }
         }catch(IOException e){
             System.out.println(e.getMessage());
@@ -241,4 +249,37 @@ public class Juego {
         
         return mapa;
     }
+    
+    //En caso de querer empezar un nuevo juego con los mismo archivos, se debe facilicar
+    //la opcion de cargarlos automaticamente
+    
+    /*
+    public static void mantenerArchivosUltimoJuego(){
+        //PreguntasGuardadas
+        try(BufferedWriter buff= new BufferedWriter(new FileWriter(rutaFijaP))){
+            for(String p:preguntas){
+                buff.write(p);
+                buff.newLine();
+            }
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        
+        //RespuestasGuardadas
+        try(BufferedWriter buff= new BufferedWriter(new FileWriter(rutaFijaR))){
+            for(Map.Entry<String,ArrayList<String>> m:respuestas.entrySet()){
+                String linea=m.getKey();
+                for(String sn:m.getValue()){
+                    linea=linea+" "+sn;
+                }
+                buff.write(linea);
+                buff.newLine();
+            }
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    */
+    
+    
 }
