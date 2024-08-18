@@ -86,7 +86,7 @@
                         </VBox>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="510.0" prefWidth="157.0">
                            <content>
-                              <VBox fx:id="vbPosibilidades" alignment="TOP_CENTER" prefHeight="512.0" prefWidth="157.0" styleClass="copyright" />
+                              <VBox fx:id="vbPosibilidades" alignment="TOP_CENTER" prefHeight="512.0" prefWidth="182.0" styleClass="copyright" />
                            </content>
                         </ScrollPane>
                      </children>
@@ -97,12 +97,15 @@
       </SplitPane>
       <HBox prefHeight="21.0" prefWidth="800.0" styleClass="copyright">
          <children>
-            <Label prefHeight="17.0" prefWidth="138.0" text="Copyright©2024 Grupo#6">
+            <Label prefHeight="17.0" prefWidth="173.0" text="Copyright©2024 Grupo#6" textFill="WHITE">
                <font>
-                  <Font size="11.0" />
+                  <Font name="System Bold" size="11.0" />
                </font>
             </Label>
-            <Label fx:id="lblEditable" alignment="BASELINE_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="18.0" prefWidth="669.0" text="Hola" textAlignment="RIGHT" />
+            <Label fx:id="lblEditable" alignment="BASELINE_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="18.0" prefWidth="669.0" text="Hola" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Label>
          </children>
       </HBox>
    </children>
