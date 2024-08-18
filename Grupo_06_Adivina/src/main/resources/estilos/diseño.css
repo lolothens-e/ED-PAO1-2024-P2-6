@@ -1,0 +1,181 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 17 ago 2024, 17:27:48
+    Author     : Steven
+*/
+.vbox-gradient {
+    -fx-background-color: linear-gradient(from 50% 0% to 70% 40%, #009300, #7b7b7b);
+}
+
+.vbox-gradient-Cargar{
+    -fx-background-color: linear-gradient(from 25% 0% to 50% 50%, #009300, #7b7b7b);
+    /*-fx-background-color:#7b7b7b;*/
+}
+
+.copyright{
+    -fx-background-color:#7b7b7b;
+}
+
+.button-menu-trivia{
+    -fx-background-color:#edf0ed;
+/*    -fx-border-color:#000000;*/
+/*    -fx-border-width:2px;*/
+    -fx-text-fill:#000000;
+/*    -fx-border-radius:20px;*/
+    -fx-background-radius:10px;
+    -fx-font-style: italic;
+    -fx-font-size:36px;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-color: 
+        red,
+        lightblue,
+        pink,
+        orange,
+        yellow,
+        green,
+        blue,
+        indigo,
+        violet;
+    -fx-border-insets: 0;
+    -fx-border-radius: 10px;
+}
+
+.button-menu-clasico{
+    -fx-background-color:#edf0ed;
+    -fx-text-fill:#000000;
+    -fx-background-radius:10px;
+    -fx-font-style: italic;
+    -fx-font-size:36px;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-color: 
+        brown,
+        blueviolet,
+        gray,
+        blue,
+        indigo;
+    -fx-border-insets: 0;
+    -fx-border-radius: 10px;
+}
+
+.button-gradient-border {
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    /*-fx-border-color: linear-gradient(to right, red, pink, yellow, blue);*/ 
+    -fx-border-radius: 5px;
+}
+
+.button-gradient-border-2{
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-color: linear-gradient(to right, blue,black);
+    -fx-border-radius: 5px;
+}
+.button-cargar-cancelar{
+    -fx-background-color:#ffffff;
+    /*-fx-border-color:#ff3030;*/
+    -fx-border-color:#fffb01;
+    -fx-border-width:2px;
+    -fx-text-fill:#000000;
+    -fx-border-radius:8px;
+    -fx-background-radius:10px;
+    -fx-font-style: italic;
+    -fx-font-size:12px;
+}
+
+.button-cargar-aceptar{
+    -fx-background-color:#ffffff;
+    -fx-border-color:#009300;
+    -fx-border-width:2px;
+    -fx-text-fill:#000000;
+    -fx-border-radius:8px;
+    -fx-background-radius:10px;
+    -fx-font-style: italic;
+    -fx-font-size:12px;
+}
+
+.button-cargar-cargar{
+    -fx-background-color:#ffffff;
+    -fx-border-color:#f19600;
+    -fx-border-width:2px;
+    -fx-text-fill:#000000;
+    -fx-border-radius:8px;
+    -fx-background-radius:10px;
+    -fx-font-style: italic;
+    -fx-font-size:12px;
+}
+
+.textField-cargar{
+    -fx-background-color:#ffffff;
+    -fx-border-color:#009300;
+    -fx-border-width:2px;
+}
+
+.button-cargar-archivo{
+    -fx-background-color:#ffffff;
+    -fx-border-color:#000963;
+    -fx-border-width:2px;
+    -fx-text-fill:#000000;
+    -fx-border-radius:8px;
+    -fx-background-radius:10px;
+    -fx-font-style: italic;
+    -fx-font-size:12px;
+/*    -fx-font-weight: bold;*/
+}
+
+.label-cargar{
+    -fx-text-fill:#000000;
+    -fx-font-style: italic;
+    -fx-font-size:12px;
+    /*-fx-font-weight: bold;*/
+}
+
+.button-si{
+    -fx-background-color:#009300;
+    -fx-border-color:#ffffff;
+    -fx-border-width:3px;
+    -fx-text-fill:#000000;
+    -fx-border-radius:8px;
+    -fx-background-radius:10px;
+    -fx-font-style: italic;
+    -fx-font-size:60px;
+}
+
+.button-no{
+    -fx-background-color:#ff3030; 
+    -fx-border-color:#ffffff;
+    -fx-border-width:3px;
+    -fx-text-fill:#000000;
+    -fx-border-radius:8px;
+    -fx-background-radius:10px;
+    -fx-font-style: italic;
+    -fx-font-size:60px;
+}
+
+.split-pane .split-pane-divider {
+    -fx-background-color: #ffffff; /* Color de la línea divisoria */
+    -fx-background-insets: 0; /* Ajuste del fondo */
+    -fx-padding: 1.5px; /* Grosor de la línea divisoria */
+    -fx-min-width: 1.5px; /* Ancho mínimo de la línea divisoria */
+    -fx-max-width: 1.5px; /* Ancho máximo de la línea divisoria */
+    -fx-pref-width: 1.5px; /* Ancho preferido de la línea divisoria */
+}
+
+.anchor-izquierdo{
+    -fx-background-color: #009300;
+}
+
+.anchor-derecho{
+    -fx-background-color: #7b7b7b;
+}
+
+.fondo-trivia{
+    -fx-background-color: linear-gradient(to right, #ff436e,#fdff61,#00ef9c);
+    -fx-font-weight: bold; 
+}
+

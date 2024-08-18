@@ -134,6 +134,13 @@ public class CargarController implements Initializable {
     //Se escribe "Clasico" para cargar como juego clasico. Cualquier otra cosa se considera "Trivia"
     public void setBotonSeleccionado(String btn){
         esClasico= "Clasico".equals(btn);        
+        txtNPreguntas.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                txtNPreguntas.setText(oldValue);
+            }
+        });
+        txtRutaP.setEditable(false);
+        txtRutaR.setEditable(false);
     }
     
     //Obtiene la ruta del archivo txt
