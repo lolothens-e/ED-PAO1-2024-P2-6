@@ -131,6 +131,7 @@ public class JuegoClasicoController implements Initializable {
         }else{
             for(String s:posibilidades){
             Label posibilidad= new Label(s);
+            posibilidad.setStyle("-fx-text-fill: white;");
             posibilidad.setAlignment(Pos.CENTER);
             posibilidad.setAlignment(Pos.TOP_CENTER);
             
@@ -169,12 +170,13 @@ public class JuegoClasicoController implements Initializable {
         });
     }
     public void anunciarAnimalPosibilidad(String s){
-        lblnPregunta.setText("Tras deliberar creo yo que el animal en el que piensas es: ");
+        lblnPregunta.setText("Soy tan bueno que no necesito el resto de preguntas. Creo que tu animal es: ");
         lbPregunta.setText(s);
-        lblTitulo.setText("¿Estoy en lo correcto?");
+        lblTitulo.setText("Espera");
         
         btnSi.setOnMouseClicked(ev -> {
             try{
+                App.alerta(Alert.AlertType.INFORMATION, "Gracias","Lo sabia, yo gano, siempre gano", "Gracias por intentar.");
                 App.alerta(Alert.AlertType.INFORMATION, "Gracias","Lo sabia, yo gano, siempre gano", "Gracias por intentar.");
                 App.setRoot("Menu");
             }catch(IOException e){
@@ -182,7 +184,13 @@ public class JuegoClasicoController implements Initializable {
             }
         });
         btnNo.setOnMouseClicked(ev -> {
-            cargarSiguientePregunta();
+            try{
+                App.alerta(Alert.AlertType.INFORMATION, "Hmmm...","Bueno, un error lo puede tener cualquiera", "Hasta los dioses mas grandes han caido, no puedes esperar la perfeccion o si?");
+                App.alerta(Alert.AlertType.INFORMATION, "Gracias","Lo sabia, yo gano, siempre gano", "Gracias por intentar.");
+                App.setRoot("Menu");
+            }catch(IOException e){
+                System.out.println("Error de I/O");
+            }
         });
     }
     public void anunciarAnimalesPosibilidad(ArrayList<String> list){

@@ -69,9 +69,9 @@
       </SplitPane>
       <HBox prefHeight="21.0" prefWidth="800.0" styleClass="fondo-trivia" stylesheets="@../../../estilos/diseño.css">
          <children>
-            <Label text="Copyright©2024 Grupo#6">
+            <Label text="Copyright©2024 Grupo#6" textFill="WHITE">
                <font>
-                  <Font size="10.0" />
+                  <Font name="System Bold" size="10.0" />
                </font>
             </Label>
          </children>
