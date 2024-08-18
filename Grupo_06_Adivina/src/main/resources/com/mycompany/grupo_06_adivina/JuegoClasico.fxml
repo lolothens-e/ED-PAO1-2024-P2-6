@@ -20,7 +20,7 @@
                      <children>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="93.0" prefWidth="615.0">
                            <children>
-                              <Label fx:id="lblTitulo" alignment="CENTER" prefHeight="106.0" prefWidth="635.0" text="Modo Clasico" wrapText="true">
+                              <Label fx:id="lblTitulo" alignment="CENTER" prefHeight="106.0" prefWidth="635.0" text="Modo Clasico" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="System Bold Italic" size="48.0" />
                                  </font>
@@ -31,12 +31,12 @@
                            <children>
                               <VBox prefHeight="128.0" prefWidth="635.0">
                                  <children>
-                                    <Label fx:id="lblnPregunta" alignment="CENTER" contentDisplay="CENTER" prefHeight="64.0" prefWidth="635.0" text="Pregunta # x :" textAlignment="CENTER">
+                                    <Label fx:id="lblnPregunta" alignment="CENTER" contentDisplay="CENTER" prefHeight="64.0" prefWidth="635.0" text="Pregunta # x :" textAlignment="CENTER" textFill="WHITE">
                                        <font>
                                           <Font name="System Italic" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lbPregunta" alignment="CENTER" prefHeight="123.0" prefWidth="635.0" text="¿Es el animal un animal? " textAlignment="CENTER" wrapText="true">
+                                    <Label fx:id="lbPregunta" alignment="CENTER" prefHeight="123.0" prefWidth="635.0" text="¿Es el animal un animal? " textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                        <font>
                                           <Font name="System Italic" size="28.0" />
                                        </font>
@@ -47,12 +47,12 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="215.0" prefWidth="635.0" spacing="2.0">
                            <children>
-                              <Button fx:id="btnNo" mnemonicParsing="false" prefHeight="215.0" prefWidth="320.0" styleClass="button-no" stylesheets="@../../../estilos/diseño.css" text="No">
+                              <Button fx:id="btnNo" mnemonicParsing="false" prefHeight="215.0" prefWidth="320.0" styleClass="button-no" stylesheets="@../../../estilos/diseño.css" text="No" textFill="WHITE">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnSi" mnemonicParsing="false" prefHeight="215.0" prefWidth="320.0" styleClass="button-si" text="Si">
+                              <Button fx:id="btnSi" mnemonicParsing="false" prefHeight="215.0" prefWidth="320.0" styleClass="button-si" text="Si" textFill="WHITE">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -69,12 +69,12 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label fx:id="lbVerbo" alignment="CENTER" prefHeight="74.0" prefWidth="186.0" text="Adivinando...">
+                              <Label fx:id="lbVerbo" alignment="CENTER" prefHeight="74.0" prefWidth="186.0" text="Adivinando..." textFill="WHITE">
                                  <font>
                                     <Font name="System Italic" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lbFrase" text="Basado en mis conocimientos puedes estar pensando en:" textAlignment="CENTER" wrapText="true">
+                              <Label fx:id="lbFrase" text="Basado en mis conocimientos puedes estar pensando en:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </VBox.margin>

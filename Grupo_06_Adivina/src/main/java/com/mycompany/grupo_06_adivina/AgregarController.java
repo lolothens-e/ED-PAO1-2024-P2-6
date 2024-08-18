@@ -12,10 +12,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import modelo.Juego;
 /**
  * FXML Controller class
@@ -35,12 +40,9 @@ public class AgregarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnAgregar.setOnMouseClicked(ev -> {
-            guardarAnimalNuevo(tfNombreAnimal.getText()+"(User added)",Juego.respuestasUsuario,CargarController.rutaR);
-            try{
-                App.setRoot("Menu");
-            }catch(IOException e){
-                System.out.println("Error de I/O");
-            }
+            guardarAnimalNuevo("\n"+tfNombreAnimal.getText().replaceAll("\\s", "")+"(User-added)",Juego.respuestasUsuario,CargarController.rutaR);
+            Stage stage = (Stage) btnAgregar.getScene().getWindow();
+            stage.close();
         });
     }    
     public static void guardarAnimalNuevo(String animal, ArrayList<String> siNo, String ruta){
@@ -50,7 +52,6 @@ public class AgregarController implements Initializable {
                 linea=linea+" "+sn;
             }
             buff.write(linea);
-            buff.newLine();
         }catch(IOException e){
             System.out.println(e.getMessage());
         }

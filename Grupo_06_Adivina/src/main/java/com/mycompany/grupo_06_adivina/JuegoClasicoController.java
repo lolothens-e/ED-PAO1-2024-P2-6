@@ -86,10 +86,7 @@ public class JuegoClasicoController implements Initializable {
         }
         else{
             revisarPosibilidadesFinales();  
-        }
-        
-        
-        
+        }  
     }
     
     public void revisarPosibilidadesFinales(){
@@ -255,6 +252,7 @@ public class JuegoClasicoController implements Initializable {
                 Stage primaryStage = (Stage) btnSi.getScene().getWindow();
                 auxStage.initOwner(primaryStage);
                 auxStage.showAndWait();
+                App.setRoot("Menu");
             }catch(IOException e){
                 System.out.println("Error de I/O");
             }

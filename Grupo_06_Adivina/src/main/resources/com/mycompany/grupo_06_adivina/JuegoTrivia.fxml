@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -14,34 +15,46 @@
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="608.0" prefWidth="825.0">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="583.0" prefWidth="544.0" spacing="80.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="583.0" prefWidth="544.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="106.0" prefWidth="544.0">
                            <children>
-                              <Label text="Modo Trivia">
+                              <Label fx:id="lblTitulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="94.0" prefWidth="836.0" text="Modo Trivia">
                                  <font>
-                                    <Font name="System Bold Italic" size="48.0" />
+                                    <Font name="System Bold" size="51.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" prefHeight="187.0" prefWidth="798.0">
                            <children>
-                              <Label fx:id="lbPreguntaTrivia" alignment="CENTER" prefHeight="50.0" prefWidth="512.0" text="Pregunta: ¿Es el animal un animal? " textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Italic" size="22.0" />
-                                 </font>
-                              </Label>
+                              <VBox prefHeight="180.0" prefWidth="706.0">
+                                 <children>
+                                    <Label fx:id="lblAnimal" alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="706.0" text="El animal a adivinar es: x. ¿Que tanto sabes de el?">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lbPreguntaTrivia" alignment="CENTER" prefHeight="124.0" prefWidth="706.0" text=" ¿Es el animal un animal? " textAlignment="CENTER">
+                                       <font>
+                                          <Font size="40.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="130.0">
+                        <HBox alignment="CENTER" prefHeight="210.0" prefWidth="798.0" spacing="80.0">
                            <children>
-                              <Button fx:id="btnNoTrivia" mnemonicParsing="false" prefHeight="116.0" prefWidth="106.0" styleClass="button-no" stylesheets="@../../../estilos/diseño.css" text="No">
+                              <Button fx:id="btnNoTrivia" mnemonicParsing="false" prefHeight="200.0" prefWidth="275.0" styleClass="button-no" stylesheets="@../../../estilos/diseño.css" text="No" textFill="WHITE">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnSiTrivia" mnemonicParsing="false" prefHeight="116.0" prefWidth="106.0" styleClass="button-si" stylesheets="@../../../estilos/diseño.css" text="Si">
+                              <Button fx:id="btnSiTrivia" mnemonicParsing="false" prefHeight="200.0" prefWidth="275.0" styleClass="button-si" stylesheets="@../../../estilos/diseño.css" text="Si" textFill="WHITE">
                                  <font>
                                     <Font size="36.0" />
                                  </font>

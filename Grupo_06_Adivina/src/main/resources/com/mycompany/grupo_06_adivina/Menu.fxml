@@ -27,16 +27,16 @@
          <center>
             <VBox alignment="TOP_CENTER" prefHeight="333.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnClasico" mnemonicParsing="false" onAction="#modoClasico" prefHeight="90.0" prefWidth="270.0" stylesheets="@../../../estilos/diseño.css" text="Modo Clasico">
+                  <Button fx:id="btnClasico" mnemonicParsing="false" onAction="#modoClasico" prefHeight="90.0" prefWidth="270.0" stylesheets="@../../../estilos/diseño.css" text="Clasico">
                      <font>
-                        <Font size="36.0" />
+                        <Font size="40.0" />
                      </font>
                      <styleClass>
                         <String fx:value="button-menu-clasico" />
                         <String fx:value="button-gradient-border-2" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="btnTrivia" mnemonicParsing="false" onAction="#modoTrivia" prefHeight="90.0" prefWidth="270.0" stylesheets="@../../../estilos/diseño.css" text="Modo Trivia">
+                  <Button fx:id="btnTrivia" mnemonicParsing="false" onAction="#modoTrivia" prefHeight="90.0" prefWidth="270.0" stylesheets="@../../../estilos/diseño.css" text="Trivia">
                      <font>
                         <Font size="36.0" />
                      </font>

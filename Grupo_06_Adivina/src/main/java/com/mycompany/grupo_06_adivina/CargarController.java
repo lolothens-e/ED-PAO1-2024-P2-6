@@ -99,6 +99,7 @@ public class CargarController implements Initializable {
                 abrirJuego("JuegoClasico");
             }
             else{
+                Juego.nPreguntas=Juego.nPreguntasUsuario;
                 Juego.getClaveByString((String)cboxAnimales.getValue());
                 abrirJuego("JuegoTrivia");
             }   
