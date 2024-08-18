@@ -9,7 +9,7 @@ Tortuga no no no si si no si no si no
 Murcielago si si si no no no no si no no
 Serpiente no si no no si no no no si no
 Zorro si no si no no si no no si no
-Leon no si no si no no si no no si
+Leon si si no si no no si no no si
 Mono no no no si si si no no no no
 Panda si no no no si no no si no no
 Lobo si si si no no no si no si no

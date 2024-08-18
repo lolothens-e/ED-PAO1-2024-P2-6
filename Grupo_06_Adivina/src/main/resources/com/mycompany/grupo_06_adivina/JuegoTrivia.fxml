@@ -10,7 +10,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_06_adivina.JuegoTriviaController">
    <children>
-      <SplitPane prefHeight="706.0" prefWidth="800.0">
+      <SplitPane prefHeight="706.0" prefWidth="800.0" styleClass="fondo-trivia" stylesheets="@../../../estilos/diseño.css">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="608.0" prefWidth="825.0">
                <children>
@@ -20,7 +20,7 @@
                            <children>
                               <Label text="Modo Trivia">
                                  <font>
-                                    <Font size="48.0" />
+                                    <Font name="System Bold Italic" size="48.0" />
                                  </font>
                               </Label>
                            </children>
@@ -29,19 +29,19 @@
                            <children>
                               <Label fx:id="lbPreguntaTrivia" alignment="CENTER" prefHeight="50.0" prefWidth="512.0" text="Pregunta: ¿Es el animal un animal? " textAlignment="CENTER">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font name="System Italic" size="22.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="130.0">
                            <children>
-                              <Button fx:id="btnNoTrivia" mnemonicParsing="false" prefHeight="116.0" prefWidth="106.0" text="No">
+                              <Button fx:id="btnNoTrivia" mnemonicParsing="false" prefHeight="116.0" prefWidth="106.0" styleClass="button-no" stylesheets="@../../../estilos/diseño.css" text="No">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnSiTrivia" mnemonicParsing="false" prefHeight="116.0" prefWidth="106.0" text="Si">
+                              <Button fx:id="btnSiTrivia" mnemonicParsing="false" prefHeight="116.0" prefWidth="106.0" styleClass="button-si" stylesheets="@../../../estilos/diseño.css" text="Si">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -54,7 +54,7 @@
             </AnchorPane>
          </items>
       </SplitPane>
-      <HBox prefHeight="21.0" prefWidth="800.0">
+      <HBox prefHeight="21.0" prefWidth="800.0" styleClass="fondo-trivia" stylesheets="@../../../estilos/diseño.css">
          <children>
             <Label text="Copyright©2024 Grupo#6">
                <font>

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_06_adivina.CargarController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" styleClass="vbox-gradient-Cargar" stylesheets="@../../../estilos/diseño.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_06_adivina.CargarController">
    <children>
       <BorderPane prefHeight="584.0" prefWidth="800.0">
          <top>
@@ -17,7 +17,7 @@
                <children>
                   <Label text="Preguntas y Respuestas">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="System Bold Italic" size="36.0" />
                      </font>
                   </Label>
                </children>
@@ -28,26 +28,26 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" spacing="28.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#cargarArchivoPreguntas" prefHeight="25.0" prefWidth="135.0" text="Selecione Preguntas" />
-                        <TextField fx:id="txtRutaP" prefHeight="25.0" prefWidth="300.0" promptText="ruta" />
+                        <Button mnemonicParsing="false" onAction="#cargarArchivoPreguntas" prefHeight="25.0" prefWidth="135.0" styleClass="button-cargar-archivo" text="Selecione Preguntas" />
+                        <TextField fx:id="txtRutaP" prefHeight="25.0" prefWidth="300.0" promptText="ruta" styleClass="textField-cargar" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" spacing="28.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#cargarArchivosRespuestas" prefHeight="25.0" prefWidth="135.0" text="Seleccione Respuestas" />
-                        <TextField fx:id="txtRutaR" prefHeight="25.0" prefWidth="300.0" promptText="ruta" />
+                        <Button mnemonicParsing="false" onAction="#cargarArchivosRespuestas" prefHeight="25.0" prefWidth="135.0" styleClass="button-cargar-archivo" text="Seleccione Respuestas" />
+                        <TextField fx:id="txtRutaR" prefHeight="25.0" prefWidth="300.0" promptText="ruta" styleClass="textField-cargar" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" spacing="25.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" spacing="42.0">
                      <children>
-                        <Label text="Numero de preguntas: " />
-                        <TextField fx:id="txtNPreguntas" prefHeight="26.0" prefWidth="56.0" promptText="Clasico" />
+                        <Label styleClass="label-cargar" stylesheets="@../../../estilos/diseño.css" text="Numero de preguntas: " />
+                        <TextField fx:id="txtNPreguntas" prefHeight="26.0" prefWidth="56.0" promptText="Clasico" styleClass="textField-cargar" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="109.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="122.0">
                      <children>
-                        <Label text="Animal:" />
-                        <ComboBox fx:id="cboxAnimales" prefHeight="26.0" prefWidth="130.0" promptText="Trivia" />
+                        <Label styleClass="label-cargar" text="Animal:" />
+                        <ComboBox fx:id="cboxAnimales" prefHeight="26.0" prefWidth="130.0" promptText="Trivia" styleClass="textField-cargar" />
                      </children>
                   </HBox>
                </children>
@@ -57,11 +57,11 @@
             <VBox prefHeight="254.0" prefWidth="47.0" BorderPane.alignment="CENTER" />
          </left>
          <bottom>
-            <HBox alignment="CENTER" prefHeight="81.0" prefWidth="600.0" spacing="70.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="78.0" prefWidth="600.0" spacing="70.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnCargar" mnemonicParsing="false" onAction="#cargarArchivos" text="Cargar" />
-                  <Button mnemonicParsing="false" onAction="#aceptarCargar" prefHeight="25.0" prefWidth="70.0" text="Aceptar" />
-                  <Button mnemonicParsing="false" onAction="#cancelarCargar" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
+                  <Button fx:id="btnCargar" mnemonicParsing="false" onAction="#cargarArchivos" styleClass="button-cargar-cargar" text="Cargar" />
+                  <Button mnemonicParsing="false" onAction="#aceptarCargar" prefHeight="25.0" prefWidth="70.0" styleClass="button-cargar-aceptar" text="Aceptar" />
+                  <Button mnemonicParsing="false" onAction="#cancelarCargar" prefHeight="25.0" prefWidth="70.0" styleClass="button-cargar-cancelar" text="Cancelar" />
                </children>
             </HBox>
          </bottom>

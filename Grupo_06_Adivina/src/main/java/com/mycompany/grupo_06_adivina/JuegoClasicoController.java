@@ -10,6 +10,8 @@ import static modelo.Juego.*;
 import java.net.URL;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -51,6 +53,10 @@ public class JuegoClasicoController implements Initializable {
     private SplitPane pnPrincipal;
     @FXML
     private VBox vbPosibilidades;
+    @FXML
+    private Label lbVerbo;
+    @FXML
+    private Label lbFrase;
 
     /**
      * Initializes the controller class.
@@ -67,7 +73,6 @@ public class JuegoClasicoController implements Initializable {
         
         cargarSiguientePregunta();
     }    
-    @FXML
     public void cargarSiguientePregunta(){
         if(Juego.nPreguntasUsuario>Juego.respuestasUsuario.size()){
             try{
@@ -105,11 +110,13 @@ public class JuegoClasicoController implements Initializable {
     
     public void rspNo(){
         Juego.respuestasUsuario.add("no");
+        fraseAleatoria();
         cargarSiguientePregunta();
     }
     
     public void rspSi(){
         Juego.respuestasUsuario.add("si");
+        fraseAleatoria();
         cargarSiguientePregunta();
     }  
     
@@ -138,12 +145,10 @@ public class JuegoClasicoController implements Initializable {
         }
     }
     
-    @FXML
     public void resetButtons(){
         btnSi.setOnMouseClicked(evSi -> rspSi());
         btnNo.setOnMouseClicked(evNo -> rspNo());
     }
-    @FXML
     public void anunciarAnimalRespuesta(String s){
         lblnPregunta.setText("Tras deliberar creo yo que el animal en el que piensas es: ");
         lbPregunta.setText(s);
@@ -166,7 +171,6 @@ public class JuegoClasicoController implements Initializable {
             }
         });
     }
-    @FXML
     public void anunciarAnimalPosibilidad(String s){
         lblnPregunta.setText("Tras deliberar creo yo que el animal en el que piensas es: ");
         lbPregunta.setText(s);
@@ -184,7 +188,6 @@ public class JuegoClasicoController implements Initializable {
             cargarSiguientePregunta();
         });
     }
-    @FXML
     public void anunciarAnimalesPosibilidad(ArrayList<String> list){
         lblnPregunta.setText("Creo que tu animal se encuentra a tu derecha. ¿Es asi?");
         lbPregunta.setText("========>");
@@ -206,7 +209,6 @@ public class JuegoClasicoController implements Initializable {
             }
         });
     }
-    @FXML
     public void anunciarDerrota(){
         lblnPregunta.setText("No logro adivinar tu animal");
         lbPregunta.setText("Revancha?");
@@ -229,7 +231,6 @@ public class JuegoClasicoController implements Initializable {
             }
         });
     }
-    @FXML
     public void deliberacionAgregarAnimal(){
         lblnPregunta.setText("No puedo dar con tu animal. Quieres agregarlo?");
         lbPregunta.setText("Viendo el futuro creo que...");
@@ -258,6 +259,20 @@ public class JuegoClasicoController implements Initializable {
                 System.out.println("Error de I/O");
             }
         });
+    }
+    
+    //mostrar frases aleatorias :)
+    public void fraseAleatoria(){
+        List<String> listaVerbo = List.of("Integrando...", "Adivinando...", "Derivando...", "Craneando...", "Pensando...", "Hackeando...",
+     "Investigando...","Actualizando...","Desencriptando...","Compilando...","Refactorizando...","Depurando...");
+        List<String> listaFrase = List.of("Esto no es un Akinator de animales", "La base de datos de virus ha sido actualizada", 
+     "Basado en mis conocimientos puedes estar pensando en:", "Espero que tu animal siga aquí:", "El mejor juego de tu vida",
+     "Alguien se toma el tiempo de leer esto?","Espero que estes respondiendo bien las preguntas ._.");
+        Random random = new Random();
+        int indV= random.nextInt(listaVerbo.size());
+        int indF= random.nextInt(listaFrase.size());
+        lbVerbo.setText(listaVerbo.get(indV));
+        lbFrase.setText(listaFrase.get(indF));
     }
     
     
