@@ -26,35 +26,34 @@ public class Juego {
     
     static Scanner sc = new Scanner(System.in);
     
-    public static ArrayList<String> preguntas=leerPreguntas("src/main/resources"
-        + "/archivos/Preguntas.txt");
-    public static HashMap<String,ArrayList<String>> respuestas=leerRespuestas("src/main/resources"
-        + "/archivos/Respuestas.txt");
+    public static ArrayList<String> preguntas;
+    public static HashMap<String,ArrayList<String>> respuestas;
     
-//    public final static String rutaFijaP="src/main/resources/archivos/preguntasGuardadas.txt";
-//    public final static String rutaFijaR="src/main/resources/archivos/respuestasGuardadas.txt";
-    
-    public static ArbolBinario<String> arbolJuego = new ArbolBinario<>();
+    public static ArbolBinario<String> arbolJuego;
     public static ArrayList<String> respuestasUsuario=new ArrayList<>();
-    public static int nPreguntasUsuario=0;
+    public static int nPreguntasUsuario;
+    public static ArrayList<String> claveAnimalTrivia;
     
-    public static int nPreguntas=leerPreguntas("src/main/resources"
-        + "/archivos/Preguntas.txt").size();
-    public static HashMap<ArbolBinario,List<String>> caminos = cargarArbol();
-    public static HashMap<List<String>,String> animales = cargarAnimales();
+    public static int nPreguntas;
+    public static HashMap<ArbolBinario,List<String>> caminos;
+    public static HashMap<List<String>,String> animales;
     
-    public static HashMap<List<String>,String> cargarAnimales(){
+    
+    
+    
+    
+    public static void cargarAnimales(){
         HashMap<List<String>,String> retorno=new HashMap<>();
         for(Map.Entry<ArbolBinario,List<String>> m: caminos.entrySet()){
             if(!m.getKey().raiz.contenido.equals("Animal no definido")&&!(((String)m.getKey().raiz.contenido).startsWith("¿"))){
                 retorno.put(m.getValue(),(String)m.getKey().raiz.contenido );
             }
         }
-        return retorno;
+        animales=retorno;
     }
     
     //Carga arbolJuego con las preguntas y respuestas    
-    public static HashMap<ArbolBinario,List<String>> cargarArbol(){
+    public static void cargarArbol(){
     ArrayList<String> lista=preguntas;
     HashMap<String,ArrayList<String>> resp=respuestas;
             
@@ -105,8 +104,7 @@ public class Juego {
     }
     
     arbolJuego=arbol;
-    
-    return local;
+    caminos=local;
     }
     
     
@@ -170,14 +168,32 @@ public class Juego {
         return null;
     }
     
+    public static void limpiarVariables(){
+        preguntas=null;
+        respuestas=null;
+
+        arbolJuego=null;
+        respuestasUsuario=new ArrayList<>();
+        nPreguntasUsuario=0;
+        claveAnimalTrivia=null;
+
+        nPreguntas=0;
+        caminos=null;
+        animales=null;
+    }
+    
     public static String capitalize(String s){
         s=s.toLowerCase().strip();
         s=s.substring(0,1).toUpperCase()+s.substring(1);
         return s;
     }
     
+    public static void getClaveByString(String s){
+        for(Map.Entry m:animales.entrySet())if(s.equals(m.getValue())) claveAnimalTrivia=(ArrayList<String>)m.getKey();
+    }
+    
     public static void modoTrivia(){
-        ArrayList<String> claveAnimal=new ArrayList<>();
+        claveAnimalTrivia=new ArrayList<>();
         nPreguntasUsuario=nPreguntas;
         
         System.out.print("Bienvenido a trivia, escribe el nombre de un animal(existente) para comenzar: ");
@@ -192,7 +208,7 @@ public class Juego {
             animalAdivina=capitalize(sc.next());  
         }
         
-        for(Map.Entry m:animales.entrySet())if(animalAdivina.equals(m.getValue())) claveAnimal=(ArrayList<String>)m.getKey();
+        getClaveByString(animalAdivina);
         
         preguntar();
         
@@ -210,7 +226,7 @@ public class Juego {
     }
     
     //Retorna una lista con las preguntas
-    public static ArrayList<String> leerPreguntas(String ruta){
+    public static void leerPreguntas(String ruta){
         ArrayList<String> lista= new ArrayList<>();
         
         try(BufferedReader leer= new BufferedReader(new FileReader(ruta))){
@@ -222,11 +238,12 @@ public class Juego {
             System.out.println(e.getMessage());
         }
         
-        return lista;
+        preguntas=lista;
+        nPreguntas=lista.size();
     }
     
     //Retorna una mapa donde la llave es el animal y el valor es una lista con los Si y No
-    public static HashMap<String,ArrayList<String>> leerRespuestas(String ruta){
+    public static void leerRespuestas(String ruta){
         HashMap<String,ArrayList<String>> mapa= new HashMap<>();
         
         try(BufferedReader leer= new BufferedReader(new FileReader(ruta))){
@@ -247,7 +264,7 @@ public class Juego {
             System.out.println(e.getMessage());
         }
         
-        return mapa;
+        respuestas=mapa;
     }
     
     //En caso de querer empezar un nuevo juego con los mismo archivos, se debe facilicar

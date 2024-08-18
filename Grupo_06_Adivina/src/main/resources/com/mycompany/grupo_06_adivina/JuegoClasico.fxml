@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -10,38 +12,47 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_06_adivina.JuegoClasicoController">
    <children>
-      <SplitPane dividerPositions="0.685370741482966" prefHeight="706.0" prefWidth="800.0">
+      <SplitPane fx:id="pnPrincipal" dividerPositions="0.8" prefHeight="706.0" prefWidth="800.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="583.0" prefWidth="544.0" spacing="80.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="583.0" prefWidth="544.0" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="106.0" prefWidth="544.0">
                            <children>
-                              <Label text="Modo Clasico">
+                              <Label fx:id="lblTitulo" alignment="CENTER" prefHeight="106.0" prefWidth="635.0" text="Modo Clasico" wrapText="true">
                                  <font>
                                     <Font size="48.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" prefHeight="183.0" prefWidth="635.0">
                            <children>
-                              <Label fx:id="lbPregunta" alignment="CENTER" prefHeight="50.0" prefWidth="512.0" text="Pregunta: ¿Es el animal un animal? " textAlignment="CENTER">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
+                              <VBox prefHeight="128.0" prefWidth="635.0">
+                                 <children>
+                                    <Label fx:id="lblnPregunta" alignment="CENTER" contentDisplay="CENTER" prefHeight="64.0" prefWidth="635.0" text="Pregunta # x :" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lbPregunta" alignment="CENTER" prefHeight="123.0" prefWidth="635.0" text="¿Es el animal un animal? " textAlignment="CENTER" wrapText="true">
+                                       <font>
+                                          <Font size="28.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="130.0">
+                        <HBox alignment="CENTER" prefHeight="215.0" prefWidth="635.0" spacing="2.0">
                            <children>
-                              <Button fx:id="btnNo" mnemonicParsing="false" prefHeight="116.0" prefWidth="106.0" text="No">
+                              <Button fx:id="btnNo" mnemonicParsing="false" prefHeight="215.0" prefWidth="320.0" text="No">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnSi" mnemonicParsing="false" prefHeight="116.0" prefWidth="106.0" text="Si">
+                              <Button fx:id="btnSi" mnemonicParsing="false" prefHeight="215.0" prefWidth="320.0" text="Si">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -56,15 +67,25 @@
                <children>
                   <VBox prefHeight="585.0" prefWidth="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox alignment="BOTTOM_CENTER" prefHeight="69.0" prefWidth="249.0">
+                        <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="32.0" prefWidth="103.0" text="Adivinando...">
+                              <Label alignment="CENTER" prefHeight="73.0" prefWidth="170.0" text="Adivinando...">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
+                              <Label text="Basado en mis conocimientos puedes estar pensando en:" textAlignment="CENTER" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                 </VBox.margin>
+                              </Label>
                            </children>
-                        </HBox>
+                        </VBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="510.0" prefWidth="157.0">
+                           <content>
+                              <VBox fx:id="vbPosibilidades" alignment="TOP_CENTER" prefHeight="512.0" prefWidth="157.0" />
+                           </content>
+                        </ScrollPane>
                      </children>
                   </VBox>
                </children>
@@ -73,11 +94,12 @@
       </SplitPane>
       <HBox prefHeight="21.0" prefWidth="800.0">
          <children>
-            <Label text="Copyright©2024 Grupo#6">
+            <Label prefHeight="17.0" prefWidth="138.0" text="Copyright©2024 Grupo#6">
                <font>
-                  <Font size="10.0" />
+                  <Font size="11.0" />
                </font>
             </Label>
+            <Label fx:id="lblEditable" alignment="BASELINE_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="18.0" prefWidth="669.0" text="Hola" textAlignment="RIGHT" />
          </children>
       </HBox>
    </children>

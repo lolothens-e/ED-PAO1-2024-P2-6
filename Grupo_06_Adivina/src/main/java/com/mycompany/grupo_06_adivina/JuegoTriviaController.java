@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import modelo.Juego;
 /**
  * FXML Controller class
  *
@@ -30,7 +31,13 @@ public class JuegoTriviaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        System.out.println(Juego.preguntas);
+        System.out.println(Juego.respuestas);
+        System.out.print(Juego.nPreguntasUsuario+" - ");
+        System.out.println(Juego.nPreguntas);
+        System.out.println(Juego.caminos);
+        System.out.println(Juego.animales);
+        System.out.println(Juego.claveAnimalTrivia);
     }    
     
 }

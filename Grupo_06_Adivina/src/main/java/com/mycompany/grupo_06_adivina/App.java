@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * JavaFX App
@@ -14,7 +17,12 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-
+    
+    
+    public final static String rutaFijaP="src/main/resources/archivos/preguntas.txt";
+    public final static String rutaFijaR="src/main/resources/archivos/respuestas.txt";
+    
+    
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Menu"));
@@ -33,6 +41,14 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+    @FXML
+    public static void alerta(AlertType tipo,String titulo, String cabecera, String contenido){
+        Alert alerta=new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(cabecera);
+        alerta.setContentText(contenido);
+        alerta.showAndWait();
     }
 
 }

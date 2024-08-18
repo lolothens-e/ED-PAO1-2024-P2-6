@@ -24,17 +24,17 @@
             </HBox>
          </top>
          <center>
-            <VBox alignment="TOP_CENTER" prefHeight="333.0" prefWidth="600.0" spacing="25.0" BorderPane.alignment="TOP_CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="176.0" prefWidth="597.0" spacing="25.0" BorderPane.alignment="TOP_CENTER">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" spacing="28.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#cargarArchivoPreguntas" prefHeight="25.0" prefWidth="120.0" text="Cargar Preguntas" />
+                        <Button mnemonicParsing="false" onAction="#cargarArchivoPreguntas" prefHeight="25.0" prefWidth="135.0" text="Selecione Preguntas" />
                         <TextField fx:id="txtRutaP" prefHeight="25.0" prefWidth="300.0" promptText="ruta" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" spacing="28.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#cargarArchivosRespuestas" prefHeight="25.0" prefWidth="120.0" text="Cargar Respuestas" />
+                        <Button mnemonicParsing="false" onAction="#cargarArchivosRespuestas" prefHeight="25.0" prefWidth="135.0" text="Seleccione Respuestas" />
                         <TextField fx:id="txtRutaR" prefHeight="25.0" prefWidth="300.0" promptText="ruta" />
                      </children>
                   </HBox>
@@ -59,6 +59,7 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="81.0" prefWidth="600.0" spacing="70.0" BorderPane.alignment="CENTER">
                <children>
+                  <Button fx:id="btnCargar" mnemonicParsing="false" onAction="#cargarArchivos" text="Cargar" />
                   <Button mnemonicParsing="false" onAction="#aceptarCargar" prefHeight="25.0" prefWidth="70.0" text="Aceptar" />
                   <Button mnemonicParsing="false" onAction="#cancelarCargar" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
                </children>

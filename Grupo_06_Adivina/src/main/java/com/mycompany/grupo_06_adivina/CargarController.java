@@ -5,19 +5,26 @@
 package com.mycompany.grupo_06_adivina;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import modelo.Juego;
+import static modelo.Juego.nPreguntas;
+import static modelo.Juego.nPreguntasUsuario;
 
 /**
  * FXML Controller class
@@ -34,94 +41,99 @@ public class CargarController implements Initializable {
     private TextField txtNPreguntas;
     @FXML
     private ComboBox<?> cboxAnimales;
+    @FXML
+    private Button btnCargar;
     
-    private boolean btnSeleccionado; //True: Clasico, False: Trivia
-    private String rutaP;
-    private String rutaR;
+    private boolean esClasico; //True: Clasico, False: Trivia
+    public static String rutaP;
+    public static String rutaR;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
+        Juego.limpiarVariables();
+        cboxAnimales.setPromptText("Selecciona");
+        txtNPreguntas.setDisable(true);
+        cboxAnimales.setDisable(true);
+    }
+    
+    @FXML
+    private void cargarcmbAnimales(){
+        List animales= new ArrayList<>(Juego.animales.values());
+        cboxAnimales.getItems().addAll(animales);
+        cboxAnimales.setDisable(false);
+    }
+    
+    private void iniciarVarJuego(){
+        Juego.leerPreguntas(rutaP);
+        Juego.leerRespuestas(rutaR);
+        Juego.cargarArbol();
+        Juego.cargarAnimales();
+    }
+    
+    @FXML
+    private void cargarArchivos(ActionEvent event){
+        if(rutaP==null||rutaR==null){
+            App.alerta(Alert.AlertType.INFORMATION, "No especifico archivos", "Se procedera a cargar las rutas guardadas","Al no haber colocado rutas o seleccionado archivos se procedera con la carga de los archivos predeterminados");
+            rutaP=App.rutaFijaP;
+            rutaR=App.rutaFijaR;
+            
+        }
+        iniciarVarJuego();
+        if(esClasico) txtNPreguntas.setDisable(false);
+        else cargarcmbAnimales();
+
+        btnCargar.setDisable(true);
+    }
 
     //Aqui se hacen las validaciones para empezar el juego
     @FXML
-    private void aceptarCargar(ActionEvent event) {
-        if(rutaP!=null&&rutaR!=null){ //Todas las rutas de los archivos deben estar cargados
-            if(btnSeleccionado==true){ //Clasico
-                if(!txtNPreguntas.getText().isEmpty()){
-                    Juego.preguntas= Juego.leerPreguntas(rutaP);
-                    Juego.respuestas= Juego.leerRespuestas(rutaR);
-                    //Accion
-                    //El juego clasico
-                    
-                            
-                            
-                            
-                    //Despues del juego
-                    
-                    
-                }else{
-                    mensajecamposVacios();
-                }
-            }else{ //Trivia
-                if(cboxAnimales.getValue()!=null){
-                    Juego.preguntas= Juego.leerPreguntas(rutaP);
-                    Juego.respuestas= Juego.leerRespuestas(rutaR);
-                    //Accion
-                    //El juego trivia
-                    
-                    
-                    
-                    //Despues del juego
-                    
-                    
-                }else{
-                    mensajecamposVacios();
-                }
+    private void aceptarCargar(ActionEvent event)throws IOException{
+        // Si hay rutas sin especificar, si es clasico y no hay # de preguntas, o si es trivia y no hay animal seleccionado
+        boolean validacion=(esClasico&&!txtNPreguntas.getText().isEmpty())||(!esClasico&&cboxAnimales.getValue()!=null);
+        if(validacion){ //Todas las rutas de los archivos deben estar cargados
+            if(esClasico){
+                Juego.nPreguntasUsuario=Integer.parseInt(txtNPreguntas.getText());
+                abrirJuego("JuegoClasico");
             }
+            else{
+                Juego.getClaveByString((String)cboxAnimales.getValue());
+                abrirJuego("JuegoTrivia");
+            }   
         }else{
             mensajecamposVacios();
         }
     }
-
+    
     @FXML
-    private void cancelarCargar(ActionEvent event) {
+    private void abrirJuego(String modo)throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/mycompany/grupo_06_adivina/"+modo+".fxml"));
+        Parent root=fxmlLoader.load();
+
+        if(nPreguntasUsuario-nPreguntas<0)App.alerta(Alert.AlertType.WARNING,"ADVERTENCIA", "Ha seleccionado un numero de preguntas menor a la del archivo", "No llegara a un animal especifico");
+        if(nPreguntasUsuario-nPreguntas>0)App.alerta(Alert.AlertType.WARNING,"ADVERTENCIA", "Ha seleccionado un numero de preguntas mayor a la del archivo","El juego no continuara tras llegar a un animal");
+        
+        Stage stage = (Stage) txtRutaP.getScene().getWindow();
+        stage.close();
+        stage.setScene(new Scene(root));
+        
+        
+        App.setRoot(modo);
+    }
+            
+    @FXML
+    private void cancelarCargar(ActionEvent event)throws IOException {
         Stage stage= (Stage) txtRutaP.getScene().getWindow();
         stage.close();
+        App.setRoot("Menu");
     }
 
     //Inicializa la ventana para cargar los archivos segun el modo de juego
     //Se escribe "Clasico" para cargar como juego clasico. Cualquier otra cosa se considera "Trivia"
     public void setBotonSeleccionado(String btn){
-        btnSeleccionado= "Clasico".equals(btn);
-        
-        txtRutaP.setEditable(false);
-        txtRutaR.setEditable(false);
-        if(btnSeleccionado==true){ //Clasico
-            txtNPreguntas.setDisable(false);
-            cboxAnimales.setDisable(true);
-            txtNPreguntas.setPromptText("");
-            //Solo permitiremos entrada de numeros
-            txtNPreguntas.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) { // "\\d*" significa solo dígitos
-                    txtNPreguntas.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-            
-        }else{ //Trivia
-            txtNPreguntas.setDisable(true);
-            cboxAnimales.setDisable(false);
-            cboxAnimales.setPromptText("Selecciona");
-        }
-        
-        
+        esClasico= "Clasico".equals(btn);        
     }
     
     //Obtiene la ruta del archivo txt
@@ -144,7 +156,7 @@ public class CargarController implements Initializable {
     
     @FXML
     private void cargarArchivoPreguntas(ActionEvent event) {
-        String ruta= obtenerRuta();
+        String ruta = obtenerRuta();
         if(!ruta.equals("sinRuta")){
             txtRutaP.setText(ruta);
             rutaP=ruta;
@@ -153,7 +165,7 @@ public class CargarController implements Initializable {
 
     @FXML
     private void cargarArchivosRespuestas(ActionEvent event) {
-       String ruta= obtenerRuta();
+       String ruta = obtenerRuta();
         if(!ruta.equals("sinRuta")){
             txtRutaR.setText(ruta);
             rutaR=ruta;
