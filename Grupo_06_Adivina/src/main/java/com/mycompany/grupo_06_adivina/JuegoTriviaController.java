@@ -68,8 +68,8 @@ public class JuegoTriviaController implements Initializable {
     }
     
     public void revisarRespuesta(){
-        if(Juego.respuestasUsuario.get(Juego.respuestasUsuario.size()-1).equals(Juego.claveAnimalTrivia.get(Juego.respuestasUsuario.size()-1))) cargarSiguientePregunta();
-        else anunciarPerdida();
+            if(Juego.respuestasUsuario.get(Juego.respuestasUsuario.size()-1).equals(Juego.claveAnimalTrivia.get(Juego.respuestasUsuario.size()-1))) cargarSiguientePregunta();
+            else anunciarPerdida();
     }
     
     public void deliberarPerdida(ArrayList<String> posAnimales){
@@ -99,7 +99,7 @@ public class JuegoTriviaController implements Initializable {
     }
     
     public void anunciarVictoria(){
-        App.alerta(Alert.AlertType.WARNING,"Felicidades","Una persona casi tan preparada como yo.","Aun asi, me tomo mil de años llegar a donde estoy. Solo te faltan 999, buen trabajo.");
+        App.alerta(Alert.AlertType.WARNING,"Felicidades","Eres una persona casi tan preparada como yo.","Aun asi, me tomo mil de años llegar a donde estoy. Solo te faltan 999, buen trabajo.");
         try{
             App.setRoot("Menu");
         }catch(IOException e){

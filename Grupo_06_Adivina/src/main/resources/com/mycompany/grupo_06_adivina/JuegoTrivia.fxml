@@ -17,11 +17,11 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="583.0" prefWidth="544.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox alignment="BOTTOM_CENTER" prefHeight="106.0" prefWidth="544.0">
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="98.0" prefWidth="798.0">
                            <children>
-                              <Label fx:id="lblTitulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="94.0" prefWidth="836.0" text="Modo Trivia">
+                              <Label fx:id="lblTitulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="798.0" text="Modo Trivia">
                                  <font>
-                                    <Font name="System Bold" size="51.0" />
+                                    <Font name="System Bold Italic" size="51.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets top="5.0" />
@@ -29,25 +29,25 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="187.0" prefWidth="798.0">
+                        <HBox alignment="CENTER" prefHeight="251.0" prefWidth="798.0">
                            <children>
                               <VBox prefHeight="180.0" prefWidth="706.0">
                                  <children>
                                     <Label fx:id="lblAnimal" alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="706.0" text="El animal a adivinar es: x. ¿Que tanto sabes de el?">
                                        <font>
-                                          <Font name="System Bold" size="13.0" />
+                                          <Font name="System Italic" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lbPreguntaTrivia" alignment="CENTER" prefHeight="124.0" prefWidth="706.0" text=" ¿Es el animal un animal? " textAlignment="CENTER">
                                        <font>
-                                          <Font size="40.0" />
+                                          <Font name="System Italic" size="40.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="210.0" prefWidth="798.0" spacing="80.0">
+                        <HBox alignment="CENTER" prefHeight="300.0" prefWidth="798.0" spacing="80.0">
                            <children>
                               <Button fx:id="btnNoTrivia" mnemonicParsing="false" prefHeight="200.0" prefWidth="275.0" styleClass="button-no" stylesheets="@../../../estilos/diseño.css" text="No" textFill="WHITE">
                                  <font>

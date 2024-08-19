@@ -122,7 +122,8 @@ public class JuegoClasicoController implements Initializable {
         
         vbPosibilidades.getChildren().clear();
         if(posibilidades.isEmpty()){
-            Label mensaje= new Label("Eh... Esto es vergonzoso");
+            Label mensaje= new Label("Eh...Esto es vergonzoso");
+            mensaje.setStyle("-fx-text-fill: white");
             mensaje.setAlignment(Pos.CENTER);
             
             vbPosibilidades.setMargin(mensaje, new Insets(3,3,3,3));
@@ -177,7 +178,6 @@ public class JuegoClasicoController implements Initializable {
         btnSi.setOnMouseClicked(ev -> {
             try{
                 App.alerta(Alert.AlertType.INFORMATION, "Gracias","Lo sabia, yo gano, siempre gano", "Gracias por intentar.");
-                App.alerta(Alert.AlertType.INFORMATION, "Gracias","Lo sabia, yo gano, siempre gano", "Gracias por intentar.");
                 App.setRoot("Menu");
             }catch(IOException e){
                 System.out.println("Error de I/O");
@@ -186,7 +186,6 @@ public class JuegoClasicoController implements Initializable {
         btnNo.setOnMouseClicked(ev -> {
             try{
                 App.alerta(Alert.AlertType.INFORMATION, "Hmmm...","Bueno, un error lo puede tener cualquiera", "Hasta los dioses mas grandes han caido, no puedes esperar la perfeccion o si?");
-                App.alerta(Alert.AlertType.INFORMATION, "Gracias","Lo sabia, yo gano, siempre gano", "Gracias por intentar.");
                 App.setRoot("Menu");
             }catch(IOException e){
                 System.out.println("Error de I/O");
@@ -273,7 +272,7 @@ public class JuegoClasicoController implements Initializable {
      "Investigando...","Actualizando...","Desencriptando...","Compilando...","Refactorizando...","Depurando...");
         List<String> listaFrase = List.of("Esto no es un Akinator de animales", "La base de datos de virus ha sido actualizada", 
      "Basado en mis conocimientos puedes estar pensando en:", "Espero que tu animal siga aquí:", "El mejor juego de tu vida",
-     "Alguien se toma el tiempo de leer esto?","Espero que estes respondiendo bien las preguntas ._.");
+     "Alguien se toma el tiempo de leer esto?","Espero que estes respondiendo bien las preguntas");
         Random random = new Random();
         int indV= random.nextInt(listaVerbo.size());
         int indF= random.nextInt(listaFrase.size());
