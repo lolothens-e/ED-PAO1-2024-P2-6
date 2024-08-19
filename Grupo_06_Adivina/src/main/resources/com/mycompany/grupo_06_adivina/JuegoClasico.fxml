@@ -86,7 +86,7 @@
                         </VBox>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="510.0" prefWidth="157.0">
                            <content>
-                              <VBox fx:id="vbPosibilidades" alignment="TOP_CENTER" prefHeight="512.0" prefWidth="182.0" styleClass="copyright" />
+                              <VBox fx:id="vbPosibilidades" alignment="TOP_CENTER" prefHeight="512.0" prefWidth="167.0" styleClass="copyright" />
                            </content>
                         </ScrollPane>
                      </children>
