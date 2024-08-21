@@ -63,6 +63,7 @@ public class JuegoClasicoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if(Juego.nPreguntasUsuario>Juego.nPreguntas) Juego.nPreguntasUsuario=Juego.nPreguntas;
         btnNo.setOnMouseClicked(ev -> rspNo());
         btnSi.setOnMouseClicked(ev -> rspSi());
         
